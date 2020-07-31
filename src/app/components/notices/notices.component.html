@@ -1,6 +1,6 @@
 <p>notices works!</p>
 <div *ngFor="let notice of noticesService.notices">
-    <div>
+    <div (click)="clickHandle(notice)">
         <span class="notice_event_id">{{notice.event_id}}</span>
         <span class="notice_event_key">{{notice.event_key}}</span>
         <span class="notice_desc">{{ notice.event_desc }}</span>

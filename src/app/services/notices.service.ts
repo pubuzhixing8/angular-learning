@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class NoticesService {
   notices = [];
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   fakeFetchNotices() {
     this.notices = [
@@ -165,5 +166,11 @@ export class NoticesService {
         pilot: { _id: '5eeb8cb8e512c288a9227c4b', name: 'sprint-19' },
       },
     ];
+  }
+
+  fetchNotices() {
+    this.http.get('/api/typhon/broadcast/notices/has-unread').subscribe((result) => {
+      console.log(result);
+    });
   }
 }

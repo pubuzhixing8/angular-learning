@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NoticesService } from 'src/app/services/notices.service';
 
 @Component({
@@ -16,7 +16,14 @@ export class NoticesComponent implements OnInit {
   // 构造器注入
   constructor(public noticesService: NoticesService) {}
 
+  @Output()
+  read: EventEmitter<string> = new EventEmitter();
+
   ngOnInit() {
     this.noticesService.fakeFetchNotices();
+  }
+
+  clickHandle(notice) {
+    this.read.emit(notice.event_id);
   }
 }
